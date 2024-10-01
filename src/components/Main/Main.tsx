@@ -5,12 +5,15 @@ import { Header } from 'components/Header/Header';
 
 
 export const Main = () => {
-    const { isSignUpVisible, handleNameChange, handleSurnameChange, isEmailValid, handleEmailChange, isPasValid, name, surname, isSurnameValid, isNameValid, handlePasChange, clickCheckBox, rememberMe, clickSignIn, handleRememberMe, toggleSignUp, password, email } = useMain()
+    const { isSignUpVisible, handleNameChange, handleSurnameChange,
+        isEmailValid, handleEmailChange, isPasValid, name, surname,
+        isSurnameValid, isNameValid, handlePasChange, clickCheckBox,
+        rememberMe, clickSignIn, handleRememberMe, toggleSignUp, password, email } = useMain()
 
 
     return (<>
         <Header
-            log= {isSignUpVisible ?  'Sign Up' : "Sign In"}
+            log={isSignUpVisible ? 'Sign Up' : "Sign In"}
         />
         <div className='inputs'>
 
