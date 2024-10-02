@@ -30,6 +30,15 @@
     border-color: #ccc;
 }
 
+.error-message{
+    background-color: aqua;
+    color: red;
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+    width: 300px;
+}
+
 .check {
     display: flex;
     align-items: center;

@@ -25,7 +25,9 @@ export const Main = () => {
                         placeholder='First Name *'
                         value={name}
                         onChange={handleNameChange}
+                        
                     />
+                    {!isNameValid && <p className="error-message">Name and surname from 3 characters.</p>}
                     <input
                         className={`input ${surname === "" ? '' : (isSurnameValid ? 'valid' : 'invalid')}`}
                         type="text"
@@ -33,6 +35,7 @@ export const Main = () => {
                         value={surname}
                         onChange={handleSurnameChange}
                     />
+                    {!isSurnameValid && <p className="error-message">Name and surname from 3 characters.</p>}
                 </>
             )}
 
@@ -43,6 +46,8 @@ export const Main = () => {
                 value={email}
                 onChange={handleEmailChange}
             />
+            {!isEmailValid && <p className="error-message">Email - must write: at least a symbol, a dot, at least
+                character, point, and minimum character.</p>}
 
             <input
                 className={`input ${password === "" ? '' : (isPasValid ? 'valid' : 'invalid')}`}
@@ -51,6 +56,8 @@ export const Main = () => {
                 value={password}
                 onChange={handlePasChange}
             />
+            {!isPasValid && <p className="error-message">The password must be at least 8 characters long,
+                with uppercase and lowercase letters (lat.)</p>}
 
             <main className='check'>
                 <input className='checkBox'

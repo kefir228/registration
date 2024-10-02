@@ -95,16 +95,41 @@ export const useMain = () => {
     }
 
     const clickSignIn = () => {
-        if (email.trim() === "" || password.trim() === "") {
+
+        const isEmailEmpty = email.trim() === "";
+        const isPasswordEmpty = password.trim() === "";
+        const isNameEmpty = name.trim() === "";
+        const isSurnameEmpty = surname.trim() === "";
+
+        const accounts = JSON.parse(localStorage.getItem('accounts') || '[]') as Array<{ email: string, password: string, name: string, surname: string }>;
+
+        if (isEmailEmpty || isPasswordEmpty || (isSignUpVisible && (isNameEmpty || isSurnameEmpty))) {
             alert('smth wrong ;(')
-        } else if (isEmailValid && isPasValid && (!isSignUpVisible || (isNameValid && isSurnameValid))) {
-            window.location.reload()
-            alert('successfully ;)')
-        } else {
-            alert('smth wrong ;(')
+        } else if (isSignUpVisible && isEmailValid && isPasValid && isNameValid && isSurnameValid) {
+            const accountExist = accounts.find(account => account.email === email)
+
+            if (accountExist) {
+                alert('Account with this email already exists.')
+            } else {
+                const newAccount = { email, password, name, surname }
+                accounts.push(newAccount)
+                localStorage.setItem('accounts', JSON.stringify(accounts))
+                window.location.reload()
+                alert('Account created successfully ;)')
+            }
+        }
+        else if (!isSignUpVisible && isEmailValid && isPasValid) {
+            
+            const account = accounts.find(account => account.email === email && account.password === password)
+
+            if (account) {
+                alert(`Welcome back, ${account.name}!`);
+                window.location.reload();
+            } else {
+                alert('Invalid email or password.');
+            }
         }
     }
-
     const toggleSignUp = () => {
         setIsSignUpVisible(prev => !prev);
     };
